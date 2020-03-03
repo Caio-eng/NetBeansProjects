@@ -1,5 +1,6 @@
 package cliente;
 
+import java.io.PrintStream;
 import java.net.*;
 import static javax.swing.JOptionPane.*;
 
@@ -10,7 +11,7 @@ public class Chat extends javax.swing.JFrame {
     //Construtor
     public Chat() {
         try {
-             s = new Socket("127.0.0.1", 5000);
+             s = new Socket("localhost", 5000);
         } catch (Exception e) {
             
             showMessageDialog(null, "Não se conectou ao servidor");
@@ -34,6 +35,11 @@ public class Chat extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         mensagemRecebida.setText("Enviar");
+        mensagemRecebida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mensagemRecebidaActionPerformed(evt);
+            }
+        });
 
         mensagemEnviada.setColumns(20);
         mensagemEnviada.setRows(5);
@@ -73,6 +79,29 @@ public class Chat extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mensagemRecebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mensagemRecebidaActionPerformed
+        
+        String mensagem;
+        
+        try {
+            
+           PrintStream ps = new PrintStream(s.getOutputStream()); 
+           mensagem = mensagemEnviada.getText();
+           
+           ps.println(mensagem);
+           ps.flush();
+           
+           mensagemEnviada.setText("");
+           
+        } catch(Exception e) {
+            
+            showMessageDialog(null, "Não conseguiu enviar a mensagem", "",ERROR_MESSAGE);
+            
+        }
+        
+        
+    }//GEN-LAST:event_mensagemRecebidaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
