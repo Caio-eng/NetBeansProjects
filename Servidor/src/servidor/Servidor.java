@@ -1,15 +1,16 @@
 package servidor;
 
-import java.io.BufferedReader;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.*;
+import java.util.ArrayList;
 
 public class Servidor {
 
     public static void main(String[] args) {
         
-        String mensagemRecebida;
+        ArrayList<PrintStream> clientes = new ArrayList<>();
         
         try {
             
@@ -20,13 +21,10 @@ public class Servidor {
                 
                 socket = server.accept();
                 
-                InputStreamReader isr = new InputStreamReader(socket.getInputStream()); // recebe os dados
-                BufferedReader br = new BufferedReader(isr); //le os dados
+                //Guarda o endereço do cliente
+                clientes.add(new PrintStream(socket.getOutputStream()));
                 
-                while((mensagemRecebida = br.readLine()) != null) {
-                    
-                    System.out.println(mensagemRecebida);
-                }
+                Mensagem mensagem = new Mensagem(socket, clientes);
                 
             }
                     
