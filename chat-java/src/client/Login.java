@@ -36,7 +36,7 @@ public class Login extends GUI {
     }
 
     protected void initComponents() {
-        jl_title = new JLabel("CHAT", SwingConstants.CENTER);
+        jl_title = new JLabel("LOGIN", SwingConstants.CENTER);
         jb_login = new JButton("Entrar");
         jl_user = new JLabel("Nome", SwingConstants.CENTER);
         jl_port = new JLabel("Porta", SwingConstants.CENTER);

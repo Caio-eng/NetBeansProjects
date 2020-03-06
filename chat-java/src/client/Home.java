@@ -27,7 +27,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import Server.Server;
 
-public class Home extends GUI{
+public class Home extends GUI {
+
     private JLabel title;
     private ServerSocket server;
     private final Socket connection;
@@ -175,6 +176,7 @@ public class Home extends GUI{
                     new Thread(cl).start();
 
                 } catch (IOException ex) {
+                    System.err.println("[Home:openChat] -> " + ex.getMessage());
                 }
             }
 
@@ -213,4 +215,5 @@ public class Home extends GUI{
     public Map<String, ClientListener> getConnected_listeners() {
         return connected_listeners;
     }
+
 }

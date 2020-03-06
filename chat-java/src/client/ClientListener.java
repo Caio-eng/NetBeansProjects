@@ -3,9 +3,13 @@ package client;
 import common.Utils;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.logging.Level;
 
+/**
+ *
+ * @author ccplmoreira
+ */
 public class ClientListener implements Runnable{
+    
     private boolean running;
     private Socket socket;
     private Home home;
@@ -83,4 +87,5 @@ public class ClientListener implements Runnable{
             System.out.println(" >> Mensagem: " + message);
         }
     }
+    
 }

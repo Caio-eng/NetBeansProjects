@@ -22,9 +22,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-
 public class Chat extends GUI {
-     private JLabel jl_title;
+
+    private JLabel jl_title;
     private JEditorPane messages;
     private JTextField jt_message;
     private JButton jb_message;
@@ -170,4 +170,5 @@ public class Chat extends GUI {
         jt_message.setText("");
 
     }
+
 }
